@@ -1,0 +1,41 @@
+<div style="background-color:LightGray;">
+    <h1 style="text-align:center; background-color:LightGray;">
+        Welcome <b style="font-family:verdana;">{{ username}}</b>!
+    <h1/>
+    <div style="text-align:right;" class="buttonHolder">
+        <form action="{% url 'sign_in' %}">
+            <input type="submit" value="Sign Out" />
+        </form>
+    </div>
+</div>
+
+<div style="text-align:right;" class="buttonHolder">
+<form action="{% url 'index_all' %}">
+    <input type="submit" value="Edit Tricks" />
+</form>
+</div>
+
+
+{% for class in classes %}
+<div class="row">    
+    <div class="column">
+        <h3 style="text-align:center">{{ class.name }}</h3>
+        
+        {% for trick in tricks %}
+            {% if trick.class_id == class.id %}
+                <div class="col-md-4" style="text-align:center; font-size:20px">  
+                    <a  href="{% url 'detail' trick.pk %}">
+                        {{ trick.name }}
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+    </div>
+{% endfor %}   
+
+<div style="text-align:right;" class="buttonHolder">
+<form action="{% url 'index_all' %}">
+    <input type="submit" value="Edit Tricks" />
+</form>
+</div>

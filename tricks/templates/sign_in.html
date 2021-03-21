@@ -1,0 +1,42 @@
+
+
+<div style="text-align:center; background-color:LightGray;">
+<h1 style="font-family:verdana; background-color:Gray; text-align:center">- Martial Arts Tricking Database -</h1>
+<h1>Sign In<br></h1>
+{% comment %} <form action="{% url 'index_all' %}">
+    <input type="submit" value="Tricks" />
+</form> {% endcomment %}
+
+<form action="{% url 'sign_in' %}" method='POST'>{% csrf_token %}
+<p style="text-align:center;">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" value="{{ username }}"><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" value="{{ password }}">
+    {%if confirm_password %} 
+        <p style="color:Red;text-align:center"> 
+            {{ confirm_msg }}<br><br>
+            <label for="confirm_pass" style="color:Black">Confirm Password:</label><br>
+            <input type="password" id="confirm_pass" name="confirm_pass">
+        </p>
+    {% endif %}
+</p>
+{%if not confirm_password %} 
+    <p style="color:Red;text-align:center">
+        <button type="submit" name="login" value="true">Sign In</button><br>
+        {{ error }}<br><br>
+    </p> 
+    
+    <div style="text-align:right">
+        <button type="submit" name="create" value="true">Create New Account</button>
+    </div>
+{% else %}
+    <div style="color:Red;text-align:center">
+        {{ error }}<br>
+    </div>
+    <button type="submit" name="create" value="true">Create New Account</button>
+{% endif %}
+
+<br><br>
+</form>
+</div>
